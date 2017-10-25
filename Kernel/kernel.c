@@ -3,6 +3,8 @@
 #include <lib.h>
 #include <moduleLoader.h>
 #include <naiveConsole.h>
+// Nuestros Includes
+#include <driverVideo.h>
 
 extern uint8_t text;
 extern uint8_t rodata;
@@ -100,5 +102,8 @@ int main()
 	ncNewline();
 
 	ncPrint("[Finished]");
-	return 0;
+
+	clear();
+	printMsg(0,0, "ClicOS Revenge", 0x0F);
+	return(0);
 }
