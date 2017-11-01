@@ -22,11 +22,11 @@ void putChar(char a ) { // se define color estandar
 		forwardCursor();
 }
 
-// void setCursor(int f, int c){
-// 	if(!validPosition(f,c)) return;
-// 	i=c;
-// 	j=f;
-// }
+void setCursor(int f, int c){
+	if(!validPosition(f,c)) return;
+	i=c;
+	j=f;
+}
 
 void updateScreen(){
 	char * screen = (char*) SCREEN;
@@ -163,4 +163,26 @@ void clear()
 		}
 	}
 	updateScreen();
+}
+
+void changeStartModule(int f, int c){
+	if(f<0 || f>WIDTH || c < 3 || c>HEIGHT){
+		return;
+	}
+	jStartModule = c;
+	iStartModule = f;
+	i=f;
+}
+
+void changeStopBackwards(int from){
+	stopBackWards = from;
+	return;
+}
+
+int isBackwardsOn(){
+	if(stopBackWards == -1){
+		return 1;
+	}
+	return (stopBackWards <= i);
+
 }

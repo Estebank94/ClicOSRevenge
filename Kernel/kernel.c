@@ -5,6 +5,8 @@
 #include <naiveConsole.h>
 // Nuestros Includes
 #include <driverVideo.h>
+#include <terminal.h>
+#include <systemCalls.h>
 
 extern uint8_t text;
 extern uint8_t rodata;
@@ -105,5 +107,22 @@ int main()
 
 	clear();
 	printMsg(0,0, "ClicOS Revenge", 0x0F);
-	return(0);
+
+	clear();
+	
+	
+	cli();
+	terminalInitializeC();
+	loadIDT();
+	enablePIC();
+
+	printMsg(0,0,"Arquitectura de computadoras",0x0F);
+	printMsg(1,0,"La hora local es:",0x0F);
+	char time[9];
+	getTime(time);
+	printMsg(2,0,time,0x20);
+	//memcpy((void*)0x700000, dummyAddress, 0x10000);
+	 // resetBuffer();
+	// (*(EntryPointS)currentAddress)(0);
+	while(1);
 }
